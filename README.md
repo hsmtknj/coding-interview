@@ -12,7 +12,7 @@ In this directory, questions of the following URL are implemented.
 - JPN:  
 <https://postd.cc/50-data-structure-and-algorithms-interview-questions-for-programmers/>
 
-If you have a oppotunity to take a coding test, implementing these codes might remind you of "data structure and algorithm".
+If you have a oppotunity to take a coding interview, implementing these codes might remind you of "basic knowledge of programming" and "data structure and algorithm" and so on.
 
 NOTE:
 These codes all might not be optimized answers. If I notice and understand better answer than now, I will update and add new program.
