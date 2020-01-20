@@ -17,8 +17,10 @@ If you have a oppotunity to take a coding test, implementing these codes might r
 NOTE:
 These codes all might not be optimized answers. If I notice and understand better answer than now, I will update and add new program.
 
-## Programming Language
-- C++
+## Development Environment
+- Programming Language: C++
+- Compiler: GCC 9.2.0
+    - C++17
 
 ## References
 - [50+ Data Structure and Algorithms Interview Questions for Programmers
