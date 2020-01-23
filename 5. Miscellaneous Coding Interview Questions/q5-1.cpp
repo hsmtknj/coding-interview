@@ -1,23 +1,20 @@
 /**
  * [Question]
- * - バケットソート(計数ソート)のアルゴリズムを実装するにはどうすればよいですか？
+ * - Bucket Sort (Bin sort) のアルゴリズムを実装するにはどうすればよいですか？
  * 
  * [Solution]
- * - ソートしたい配列:v の他に，バケット配列:b と 累積和配列:sum を用意する
- *     - 大きさは適当な大きさMAX(配列の最大が入ればOK)
- * - b   : どの値が何回出てきているかをチェック
- * - sum : bのカウントの累積和を取る
- *     - この累積和がインデックスそのものになる (one-based-indexing)
- * - sorted[--sum[v[i]]] = v[i] で格納
- *     - 前置デクリメントの役割
- *         - one-based-indexing -> zero-based-idexing に変換
- *         - 同じ値でもデクリメントすることで次回登場時に同じインデックスとなることを防ぐ
+ * - バケット配列を用意する
+ * - データを対応するバケットに入れる
+ * - バケットから順に取り出す
+ * 
  * <計算量>
  * - O(n + A)
  * <特徴>
  * - 小さい値までのソートならめちゃめちゃ速い
+ * - 重複に対応していない
  * 
  * [Reference]
+ * - <https://www.codereading.com/algo_and_ds/algo/bucket_sort.html>
  * - <https://qiita.com/drken/items/44c60118ab3703f7727f#8-1-%E8%A8%88%E6%95%B0%E3%82%BD%E3%83%BC%E3%83%88>
  */
 
@@ -29,25 +26,20 @@ const int N_MAX = 100000;
 
 void bucket_sort(std::vector<int> &v)
 {
-    if (v.size() == 0 | v.size() == 1)
-        return;
+    // バケツを用意
+    std::vector<bool> bucket(N_MAX+1, false);
 
-    std::vector<int> b(N_MAX + 1, 0);       // bucket 配列, 登場回数をカウント
-    std::vector<int> sum(N_MAX + 1);  // 蓄積和 配列, これがそのまま 配列順 になる
-
-    // 登場回数をカウント
+    // バケツに入れる
     for (int i = 0; i < v.size(); i++)
-        b[v[i]]++;
+        bucket[v[i]] = true;
 
-    // 蓄積和を算出
-    sum[0] = b[0];
-    for (int i = 1; i <= N_MAX; i++)
-        sum[i] = sum[i-1] + b[i];
-
-    // 蓄積和を使ってソート
-    std::vector<int> sorted(v.size());
-    for (int i = v.size()-1; i >= 0; i--)
-        sorted[--sum[v[i]]] = v[i];
+    // バケツから順に取り出す
+    std::vector<int> sorted;
+    for (int i = 0; i < bucket.size(); i++)
+    {
+        if (bucket[i] == true)
+            sorted.push_back(i);
+    }
 
     v = sorted;
 }
@@ -55,11 +47,11 @@ void bucket_sort(std::vector<int> &v)
 int main()
 {
     /* INPUT */
-    std::vector<int> v = {30, 88, 100, 2, 17, 1, 30, 1, 88, 57, 25, 20};
+    std::vector<int> v = {30, 88, 100, 1, 25, 20};
 
     /* SOLVE */
     bucket_sort(v);
-
+    
     for (int i = 0; i < v.size(); i++)
         std::cout << v[i] << " ";
     std::cout << std::endl;

@@ -1,12 +1,16 @@
 /**
  * [Question]
- * - 反復のクイックソートのアルゴリズムを実装するにはどうすればよいですか？
+ * - Quick Sort のアルゴリズムを実装するにはどうすればよいですか？
  * 
  * [Solution]
  * - left, right インデックスに加えて pivot インデックスを用意
  * - pivot の左は pivot 値より小さく，pivot の右は pivot 値より大きくする
  *      - leftは左端
  *      - rightは右端+1 (配列外)
+ * 
+ * [計算量]
+ * - O(N^2)
+ *      - 一般的に高速
  */
 
 #include <iostream>
